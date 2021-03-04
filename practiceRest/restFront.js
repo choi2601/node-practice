@@ -1,10 +1,6 @@
 async function getUser() {
     try {
-        const res = await axios.get('/user', {
-            validateStatus: function (status) {
-                return status < 500;
-            }
-        });
+        const res = await axios.get('/users');
         const users = res.data;
         const list = document.getElementById('list');
         list.innerHTML = '';
@@ -21,11 +17,7 @@ async function getUser() {
                     return alert('이름을 반드시 입력하셔야 합니다');
                 }
                 try {
-                    await axios.put('/user/' + key, {name}, {
-                        validateStatus: function (status) {
-                            return status < 500;
-                        }
-                    });
+                    await axios.put('/user/' + key, {name});
                     getUser();
                 } catch(err) {
                     console.error(err);
@@ -35,11 +27,7 @@ async function getUser() {
             remove.textContent = '삭제';
             remove.addEventListener('click', async () => {
                 try {
-                    await axios.delete('/user/' + key, {
-                        validateStatus: function (status) {
-                            return status < 500;
-                        }
-                    });
+                    await axios.delete('/user/' + key);
                     getUser();
                 } catch(err) {
                     console.error(err);
@@ -48,11 +36,11 @@ async function getUser() {
             userDiv.appendChild(span);
             userDiv.appendChild(edit);
             userDiv.appendChild(remove);
-            userDiv.appendChild(userDiv);
+            list.appendChild(userDiv);
             console.log(res.data);
         });
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
  window.onload = getUser;
@@ -63,11 +51,7 @@ async function getUser() {
          return alert('이름을 입력하세요');
      }
     try {
-        await axios.post('/user/', {name}, {
-            validateStatus: function (status) {
-                return status < 500;
-            }
-        });
+        await axios.post('/user', {name});
         getUser();
     } catch (err) {
         console.error(err);

@@ -65,9 +65,9 @@ http.createServer(async (req, res) => {
         res.writeHead(404);
         return res.end('Not Found');
     } catch (err) {
-        console.log(err);
-        res.writeHead(500, {'content-Type' : 'text/plain; chaeset=utf-8'});
-        res.end(err.message);
+        console.error(err);
+        res.writeHead(500);
+        res.end(err);
     }
 })
     .listen(8082, () => {

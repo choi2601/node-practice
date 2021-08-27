@@ -1,0 +1,21 @@
+{
+  "name": "npmtest-8397",
+  "version": "0.0.1",
+  "description": "hello package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "author": "choi",
+  "license": "MIT",
+  "dependencies": {
+    "cookie": "^0.4.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
